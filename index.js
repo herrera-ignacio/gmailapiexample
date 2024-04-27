@@ -80,7 +80,7 @@ async function listLabels(auth) {
 
 const email = createEmail(
     "info@pactocollective.com",
-    "ignacioromanherrera@gmail.com, nachodc1995@gmail.com, nickteperman@gmail.com, talbano@itba.edu.ar",
+    "ignacioromanherrera@gmail.com",
     "Test from Gmail API",
     "Nacho escribiendo con la API de Gmail ;)"
 )
@@ -98,9 +98,7 @@ function createEmail(sender, receiver, subject, message) {
    return emailLines.join('\n');
 }
 
-// const encodedEmail = Buffer.from(JSON.stringify(email)).toString("base64")
-const encodedEmail = Buffer.from(email).toString('base64')
-    .replace(/\+/g, '-').replace(/\//g, '_')
+const encodedEmail = Base64.encodeURI(email);
 const message = { raw: encodedEmail }
 
 async function sendEmail(auth){
